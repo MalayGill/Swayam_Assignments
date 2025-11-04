@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int minimumDeletions(vector<int>& nums) {
+        int max=INT_MIN, min=INT_MAX;
+        int mini,maxi;
+        int n=nums.size();
+        for(int i=0; i<n; i++){
+            if(nums[i]<min){
+                min=nums[i];
+                mini=i;
+            }
+            if(nums[i]>max){
+                max=nums[i];
+                maxi=i;
+            }
+        }
+        int ans=0;
+        int fi=maxi<mini?maxi:mini;
+        int li=maxi>mini?maxi:mini;
+        int ct1=(fi+1)+(n-li);
+        int ct2=(fi+1)+(li-fi);
+        int ct3=(n-li)+(li-fi);
+        return ct1<ct2?ct1<ct3?ct1:ct3:ct2<ct3?ct2:ct3;
+    }
+};
